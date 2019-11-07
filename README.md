@@ -19,7 +19,7 @@ conda activate snakemake
 
 ### Configuration
 
-Configure the workflow by editing the file [`config.yaml`](config.yaml).
+Configure the workflow by editing the file [`config.yaml`](config.yaml) and the `traits.tsv` file.
 
 ### Execution
 
@@ -53,3 +53,9 @@ snakemake --use-conda --profile slurm --jobs 100
 ```
 
 For more information on how to configure the cluster parameters, take a look at the [snakemake documentation](https://snakemake.readthedocs.io/en/stable/executable.html).
+
+## Test data
+
+There is a small test dataset included under [`test/data`](test/data).
+The traits are in this case just random numbers sampled from a standard normal distribution.
+Running the workflow without modifying `config.yaml` will use this data.

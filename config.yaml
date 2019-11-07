@@ -3,7 +3,7 @@
 # These parameters control what trait data and what
 # variants will be used for the GWAS.
 traits: traits.tsv
-variants: test/data/variants.vcf
+variants: test/data/variants.vcf.gz
 
 # Symlinking of data
 # ------------------
