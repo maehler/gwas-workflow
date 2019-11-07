@@ -1,0 +1,3 @@
+name	filename	covariates
+a	test/data/trait_a.tsv	test/data/covariates.tsv
+b	test/data/trait_b.tsv	test/data/covariates.tsv

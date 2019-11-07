@@ -1,0 +1,52 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+description: config dictionary
+type: object
+properties:
+    # Input data
+    traits:
+        type: string
+        description: path to tsv file containining trait metadata
+    variants:
+        type: string
+        description: path to vcf file
+    plink_prefix:
+        type: string
+        description: plink file prefix
+
+    # Data symlinking
+    symlink_data:
+        type: boolean
+        default: true
+        description: whether variant data should be symlinked
+    symlink_dir:
+        type: string
+        default: data
+        description: path to directory where variant data should be symlinked
+
+    # SNP filtering
+    snp_filtering:
+        type: object
+        properties:
+            hwe_p:
+                type: number
+                minimum: 0
+                maximum: 1
+                default: 0.000001
+                description: Hardy-Weinberg p-value threshold
+            maf:
+                type: number
+                minimum: 0
+                maximum: 0.5
+                default: 0.05
+                description: Minor allele frequency threshold
+
+    # General PLINK parameters
+    plink:
+        allow_extra_chr:
+            type: boolean
+            default: false
+            description: whether to allow non-standard chromosome names
+
+required:
+    - traits
+    - variants

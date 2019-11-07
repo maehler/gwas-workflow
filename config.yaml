@@ -1,0 +1,46 @@
+# Input data
+# ----------
+# These parameters control what trait data and what
+# variants will be used for the GWAS.
+traits: traits.tsv
+variants: test/data/variants.vcf
+
+# Symlinking of data
+# ------------------
+# If the location of the variant data is not
+# writeable for the user, then it can be
+# necessary to symlink the data to a different
+# location. This also has other advantages, and
+# is therefore done by default.
+symlink_data: true
+symlink_dir: data
+
+# PLINK prefix
+# ------------
+# A prefix for PLINK output files can be specified.
+# If not given, this will be based on the name of
+# the VCF file. Note that if a PLINK prefix is
+# specified, and that set of files already exist,
+# none of the SNP filtering parameters below will
+# be applied, but the variants will be used as-is.
+#
+# plink_prefix: test/data/variants
+
+# SNP filtering
+# -------------
+# These parameters are used for filtering the variants
+# that go into the GWAS.
+snp_filtering:
+    # Minor allele frequency threshold
+    maf: 0.05
+    # Hardy-Weinberg equilibrium p-value threshold
+    hwe_p: 0.000001
+
+# PLINK parameters
+# ----------------
+#
+plink:
+    # Allow for non-standard chromosome names
+    allow_extra_chr: false
+    # How to generate family IDs from VCF sample IDs
+    family_id_flags: --double-id

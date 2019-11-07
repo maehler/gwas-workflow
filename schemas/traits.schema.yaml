@@ -1,0 +1,16 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+description: an entry in the trait sheet
+properties:
+    name:
+        type: string
+        description: trait name
+    filename:
+        type: string
+        description: path to the tsv file containing the trait data
+    covariates:
+        type: string
+        description: path to a tsv file containing covariates
+
+required:
+    - name
+    - filename

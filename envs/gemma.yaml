@@ -1,0 +1,7 @@
+name: gemma
+channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - gemma=0.98
