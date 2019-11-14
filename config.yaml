@@ -44,3 +44,35 @@ plink:
     allow_extra_chr: false
     # How to generate family IDs from VCF sample IDs
     family_id_flags: --double-id
+
+# Cluster configuration
+# ---------------------
+# Cookiecutter profile generation for cluster
+# environments. Required parameters:
+#
+# - cookiecutter_url: url to the cookiecutter template
+#   of a profile (see https://github.com/Snakemake-Profiles
+#   for some available profiles).
+# - profile_name: desired name of the generated profile.
+# - use-conda: whether conda should be used for managing
+#   software dependencies.
+# - restart-times: how many times snakemake should try to
+#   restart failing jobs.
+# - jobs: maximum number of concurrent jobs to submit to
+#   the cluster.
+#
+# Other parameter are specific to the cookiecutter.json
+# file in the cookiecutter template.
+cluster:
+    cookiecutter_url: https://github.com/Snakemake-Profiles/slurm
+    profile_name: slurm
+    use-conda: true
+    restart-times: 0
+    jobs: 100
+
+    # Parameters specific for the cookiecutter template
+    account: testaccount
+    error: logs/{rule}.err
+    output: logs/{rule}.out
+    partition: core
+    submit_script: slurm-submit-advanced.py

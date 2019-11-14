@@ -38,18 +38,17 @@ snakemake --use-conda --cores $N
 #### Cluster environments
 
 It is also possible to execute the workflow in a cluster environment, and the easiest approach is probably by using an existing [snakemake profile](https://github.com/Snakemake-Profiles).
-For example, if you want to run this using SLURM, you can set up a profile using cookiecutter
+Profiles can be generated through snakemake by modifying the cluster entry in [config.yaml](config.yaml) and running
 
 ```sh
-mkdir -p $HOME/.config/snakemake
-cd $HOME/.config/snakemake
-cookiecutter https://github.com/Snakemake-Profiles/slurm.git
+snakemake --use-conda cluster_config
 ```
 
-and then run snakemake with the generated profile
+This will generate a profile with the desired name in `$HOME/.config/snakemake`.
+The profile can be utilised by running snakemake with the `--profile` flag, specifing the generated profile
 
 ```sh
-snakemake --use-conda --profile slurm --jobs 100
+snakemake --profile <profile_name>
 ```
 
 For more information on how to configure the cluster parameters, take a look at the [snakemake documentation](https://snakemake.readthedocs.io/en/stable/executable.html).
