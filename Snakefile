@@ -39,11 +39,6 @@ def get_plink_files(trait=False, extensions=['fam', 'bed', 'bim']):
     return expand('results/{{trait}}/plink/{prefix}.{ext}',
         prefix=os.path.basename(get_plink_prefix(trait)), ext=extensions)
 
-def get_profile_path():
-    return '{home}/.config/snakemake/{profile_name}' \
-        .format(home=os.path.expanduser('~'),
-                profile_name=config['cluster']['profile_name'])
-
 localrules: all, link_variants, link_plink, link_relatedness,
     setup_plink_traits, cluster_config
 
@@ -52,34 +47,15 @@ rule all:
         expand('results/{trait}/{trait}.assoc.txt', trait=traits.name)
 
 rule cluster_config:
-    output: directory(get_profile_path())
+    output: directory( \
+        '{home}/.config/snakemake/{profile_name}' \
+            .format(home=os.path.expanduser('~'), \
+                    profile_name=config['cluster']['profile_name']))
     params:
         url=config['cluster']['cookiecutter_url'],
-        profile_name=os.path.basename(get_profile_path()),
-        outdir=os.path.dirname(get_profile_path()),
-        restart_times=config['cluster']['restart-times'],
-        jobs=config['cluster']['jobs'],
-        use_conda=str(config['cluster']['use-conda']).lower()
+        profile_name=config['cluster']['profile_name']
     conda: 'envs/cluster_config.yaml'
-    shell:
-        '''
-        mkdir -p $HOME/.cookiecutters
-        cutdir=$HOME/.cookiecutters/$(basename {params.url})
-        if [ ! -d ${{cutdir}} ]; then
-            git clone {params.url} $HOME/.cookiecutters/$(basename {params.url})
-        fi
-
-        yq .cluster config.yaml > ${{cutdir}}/cookiecutter.json
-
-        mkdir -p {params.outdir}
-        cookiecutter -o {params.outdir} --no-input ${{cutdir}}
-
-        yq '.["restart-times"]={params.restart_times} | .jobs={params.jobs} | .["use-conda"]={params.use_conda}' \
-            {output}/config.yaml > {output}/config_mod.yaml
-        mv {output}/config_mod.yaml {output}/config.yaml
-
-        echo "To use profile, run snakemake with --profile {params.profile_name} ..."
-        '''
+    shell: 'bash scripts/cluster_config.sh {params.url} {params.profile_name}'
 
 rule gemma:
     input:

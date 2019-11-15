@@ -57,22 +57,24 @@ properties:
                 description: url or path to cookiecutter profile to use
             profile_name:
                 type: string
-                default: null
                 description: name of the profile
             use-conda:
                 type: boolean
-                default: true
                 description: whether or not to use conda for managing software dependencies
             restart-times:
                 type: integer
                 minimum: 0
-                default: 0
                 description: how many times snakemake tries to restart failing jobs
             jobs:
                 type: integer
                 minimum: 1
-                default: 100
                 description: maximum number of concurrent jobs to submit to submit to the cluster
+        dependencies:
+            cookiecutter_url:
+                - profile_name
+                - use-conda
+                - restart-times
+                - jobs
 
 required:
     - traits

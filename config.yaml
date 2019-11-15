@@ -65,7 +65,7 @@ plink:
 # file in the cookiecutter template.
 cluster:
     cookiecutter_url: https://github.com/Snakemake-Profiles/slurm
-    profile_name: slurm
+    profile_name: test_slurm
     use-conda: true
     restart-times: 0
     jobs: 100
