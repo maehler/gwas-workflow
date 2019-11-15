@@ -9,3 +9,4 @@ __default__:
 
 gemma:
     time: 300
+    mem: 16000
