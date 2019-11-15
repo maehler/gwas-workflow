@@ -1,0 +1,9 @@
+__default__:
+    time: 60
+    mem: 2000
+    partition: core
+    ntasks: 1
+    job_name: "{rule}.{wildcards}"
+
+gemma:
+    time: 300

@@ -53,6 +53,13 @@ snakemake --profile <profile_name>
 
 For more information on how to configure the cluster parameters, take a look at the [snakemake documentation](https://snakemake.readthedocs.io/en/stable/executable.html).
 
+In the [cluster/slurm.yaml](cluster/slurm.yaml) you can find a suggested job configuration for SLURM.
+This together with a profile means you can run the workflow like
+
+```sh
+snakemake --profile <profile_name> --cluster-config cluster/slurm.yaml
+```
+
 ## Test data
 
 There is a small test dataset included under [`test/data`](test/data).
