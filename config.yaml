@@ -75,7 +75,7 @@ cluster:
 
     # Parameters specific for the cookiecutter template
     account: testaccount
-    error: logs/{rule}.err
-    output: logs/{rule}.out
+    error: "logs/{rule}.{wildcards}.err"
+    output: "logs/{rule}.{wildcards}.out"
     partition: core
     submit_script: slurm-submit-advanced.py
