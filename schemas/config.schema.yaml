@@ -46,6 +46,10 @@ properties:
             type: boolean
             default: false
             description: whether to allow non-standard chromosome names
+        family_id_flags:
+            type: string
+            default: --double-id
+            description: what method to use for setting family IDs
 
     # Cluster parameters
     cluster:
