@@ -27,8 +27,9 @@ cookiecutter -o $(dirname ${outdir}) --no-input ${cutdir}
 use_conda=$(yq '.cluster | .["use-conda"]' config.yaml)
 restart_times=$(yq '.cluster | .["restart-times"]' config.yaml)
 max_jobs=$(yq '.cluster | .jobs' config.yaml)
+latency_wait=$(yq '.cluster | .["latency-wait"]' config.yaml)
 
-yq '.["restart-times"]='"${restart_times}"' | .jobs='"${max_jobs}"' | .["use-conda"]='"${use_conda}" \
+yq '.["restart-times"]='"${restart_times}"' | .jobs='"${max_jobs}"' | .["use-conda"]='"${use_conda}"' | .["latency-wait"]='"${latency_wait}" \
     ${outdir}/config.yaml > ${outdir}/config_mod.yaml
 mv ${outdir}/config_mod.yaml ${outdir}/config.yaml
 

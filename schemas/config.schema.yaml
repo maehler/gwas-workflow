@@ -73,12 +73,17 @@ properties:
                 type: integer
                 minimum: 1
                 description: maximum number of concurrent jobs to submit to submit to the cluster
+            latency-wait:
+                type: integer
+                minimum: 0
+                description: maximum time (in seconds) that snakemake waits for missing output files
         dependencies:
             cookiecutter_url:
                 - profile_name
                 - use-conda
                 - restart-times
                 - jobs
+                - latency-wait
 
 required:
     - traits

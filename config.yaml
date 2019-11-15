@@ -60,6 +60,8 @@ plink:
 #   restart failing jobs.
 # - jobs: maximum number of concurrent jobs to submit to
 #   the cluster.
+# - latency-wait: maximum time (in seconds) that snakemake
+#   waits for missing output files.
 #
 # Other parameter are specific to the cookiecutter.json
 # file in the cookiecutter template.
@@ -69,6 +71,7 @@ cluster:
     use-conda: true
     restart-times: 0
     jobs: 100
+    latency-wait: 120
 
     # Parameters specific for the cookiecutter template
     account: testaccount
