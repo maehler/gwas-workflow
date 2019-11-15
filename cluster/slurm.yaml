@@ -4,6 +4,8 @@ __default__:
     partition: core
     ntasks: 1
     job_name: "{rule}.{wildcards}"
+    output: "logs/{rule}.{wildcards}.out"
+    error: "logs/{rule}.{wildcards}.err"
 
 gemma:
     time: 300
