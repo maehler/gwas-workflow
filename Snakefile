@@ -75,7 +75,7 @@ rule gemma:
         gemma \
             -bfile {params.plink_prefix} \
             -k {params.plink_prefix}.relmat.cXX.txt \
-            -lmm 2 \
+            -lmm 4 \
             -o {params.output_prefix}
         mv output/* .
         rmdir output
