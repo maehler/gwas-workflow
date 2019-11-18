@@ -10,3 +10,6 @@ __default__:
 gemma:
     time: 300
     mem: 16000
+
+gemma_relatedness:
+    mem: 16000
