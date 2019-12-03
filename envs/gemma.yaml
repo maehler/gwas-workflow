@@ -4,4 +4,4 @@ channels:
     - bioconda
     - defaults
 dependencies:
-    - gemma=0.98
+    - gemma=0.98.1
